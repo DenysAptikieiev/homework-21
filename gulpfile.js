@@ -49,7 +49,9 @@ function scripts() {
     .pipe(babel({
         presets: ['@babel/env']
     }))
-    .pipe(uglify())
+    .pipe(uglify({
+        toplevel: true
+    }))
     .pipe(gulp.dest('assets/build/js'))
 };
 
