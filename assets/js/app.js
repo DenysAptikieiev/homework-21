@@ -1,56 +1,56 @@
 "use strict";
 
-fetch('data.json')
-    .then(function (res) {
-        if (res.status === 200) return res.json();
-        console.log(`${res.status}: ${res.statusText}`);
-    })
-    .then(function (res) {
-        if (!localStorage.getItem('dataPhoto')) {
-            setLocalStorage(res, 'dataPhoto');
-        }
-    });
-
-
-
 $(document).ready(function () {
 
-    setInterval(function () {
+    fetch('data.json')
+        .then(function (res) {
+            if (res.status === 200) return res.json();
+            console.log(`${res.status}: ${res.statusText}`);
+        })
+        .then(function (res) {
+            if (!localStorage.getItem('dataPhoto')) {
+                setLocalStorage(res, 'dataPhoto');
+                // dataLocalPhoto = getLocalStorage('dataPhoto');
+            }
+        });
+
+
+    let slide = function() {
+        if (!isPaused) {
+            slideNumber++;
+            if (slideNumber >= dataLocalPhoto.length) slideNumber = 0;
+            $(`.slide-img`).attr('src', dataLocalPhoto[slideNumber].src);
+        } 
+    }
+
+    setTimeout(function () {
         dataLocalPhoto = getLocalStorage('dataPhoto');
     }, 1000);
 
     // slider
     let isPaused = false;
 
-    let autoSlide = setInterval(function () {
-        if (!isPaused) {
-            slideNumber++;
-            if (slideNumber >= dataLocalPhoto.length) slideNumber = 0;
-            $(`.slide-img`).attr('src', dataLocalPhoto[slideNumber].src);
-        } 
-    }, 3000);
+    let autoSlide = setInterval(slide, 3000);
 
     let slideNumber = 0;
 
-    $(`#arrowForward`).on('click', function () {
+    const funcSlider = () => {
         isPaused = true;
 
         setTimeout(function () {
             isPaused = false;
         }, 5000);
+    }
 
+    $(`#arrowForward`).on('click', function () {
+        funcSlider();
         slideNumber++;
         if (slideNumber >= dataLocalPhoto.length) slideNumber = 0;
         $(`.slide-img`).attr('src', dataLocalPhoto[slideNumber].src);
     });
 
     $(`#arrowBack`).on('click', function () {
-        isPaused = true;
-
-        setTimeout(function () {
-            isPaused = false;
-        }, 5000);
-
+        funcSlider();
         if (slideNumber === 0) slideNumber = (dataLocalPhoto.length);
         slideNumber--;
         $(`.slide-img`).attr('src', dataLocalPhoto[slideNumber].src);

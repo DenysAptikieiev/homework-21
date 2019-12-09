@@ -10,5 +10,14 @@
   "dependencies": {
     "jquery": "^3.4.1"
   },
-  "description": ""
+  "description": "",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DenysAptikieiev/homework-21.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DenysAptikieiev/homework-21/issues"
+  },
+  "homepage": "https://github.com/DenysAptikieiev/homework-21#readme"
 }

@@ -176,6 +176,19 @@ body {
   color: #2e2e2e;
   font-size: 16px;
 }
+
+.snow-flake img {
+  width: 30px;
+}
+
+.snow-flake {
+  position: absolute;
+  /* top: 0;
+  right: 0; */
+  z-index: 999;
+  pointer-events: none;
+}
+
 .menu {
   position: relative;
   margin: 0 auto;
