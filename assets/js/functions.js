@@ -40,7 +40,7 @@ $(document).ready(function() {
                 top += 0.2;
                 if (top >= x) top = 0;
                 left += 0.08;
-                if (left > 1400) left = 0;
+                if (left > 1200) left = 0;
                 $(elem).css({"top": top, "left": left})
             }, 10);
         }
