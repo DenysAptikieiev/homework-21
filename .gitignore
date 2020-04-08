@@ -1,3 +1,5 @@
 assets/style/components
 /node_modules
 assets/style/main.less 
+/package-lock.json
+/package.json
